@@ -30,9 +30,9 @@ path|TEXT|
 attributes|ARRAY LONGINT|see constants below
 values|ARRAY TEXT|
 
-For the ``GET`` command, a ``JSON`` is returned in element ``0``.
+For the ``GET`` command, a ``JSON`` is returned in element ``0`` of ``values``.
 
-For ``PDF_KEYWORDS`` the delimiter is a ``\n``.
+For ``PDF_KEYWORDS`` the delimiter is a ``,``.
 
 ### Constants
 
