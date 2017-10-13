@@ -33,30 +33,30 @@ For the ``GET`` command, a ``JSON`` is returned in element ``0``.
 * From ``PDFDocumentAttribute``
 
 ```
-PDF_TITLE PDFDocumentTitleAttribute
-PDF_AUTHOR PDFDocumentAuthorAttribute
-PDF_SUBJECT PDFDocumentSubjectAttribute
-PDF_CREATOR PDFDocumentCreatorAttribute
-PDF_PRODUCER PDFDocumentProducerAttribute
-PDF_KEYWORDS PDFDocumentKeywordsAttribute
-PDF_CREATION_DATE PDFDocumentCreationDateAttribute 
-PDF_MODIFICATION_DATE PDFDocumentModificationDateAttribute
+PDF_TITLE PDFDocumentTitleAttribute 1
+PDF_AUTHOR PDFDocumentAuthorAttribute 2
+PDF_SUBJECT PDFDocumentSubjectAttribute 3
+PDF_CREATOR PDFDocumentCreatorAttribute 4
+PDF_PRODUCER PDFDocumentProducerAttribute 5
+PDF_KEYWORDS PDFDocumentKeywordsAttribute 6
+PDF_CREATION_DATE PDFDocumentCreationDateAttribute 7 
+PDF_MODIFICATION_DATE PDFDocumentModificationDateAttribute 8
 ```
 
 * Properties (read only)
 
 ```
-PDF_PAGE_COUNT pageCount
-PDF_MAJOR_VERSION majorVersion
-PDF_MINOR_VERSION minorVersion
-PDF_ALLOWS_PRINTING allowsPrinting
-PDF_ALLOWS_COPYING allowsCopying
-PDF_IS_LOCKED isLocked
-PDF_IS_ENCRYPTED isEncrypted
-PDF_PERMISSIONS permissionsStatus
+PDF_PAGE_COUNT pageCount 9
+PDF_MAJOR_VERSION majorVersion 10
+PDF_MINOR_VERSION minorVersion 11
+PDF_ALLOWS_PRINTING allowsPrinting 12
+PDF_ALLOWS_COPYING allowsCopying 13
+PDF_IS_LOCKED isLocked 14
+PDF_IS_ENCRYPTED isEncrypted 15
+PDF_PERMISSIONS permissionsStatus 16
 ```
 
-* Nupported (added in 10.13 SDK)
+* Not supported (added in 10.13 SDK)
 
 ```
 allowsCommenting
