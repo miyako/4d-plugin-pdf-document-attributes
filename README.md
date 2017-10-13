@@ -28,6 +28,8 @@ values|ARRAY TEXT|
 
 For the ``GET`` command, a ``JSON`` is returned in element ``0``.
 
+For ``PDF_KEYWORDS`` the delimiter is a ``\n``.
+
 ### Constants
 
 * From ``PDFDocumentAttribute``
