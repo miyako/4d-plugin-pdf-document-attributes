@@ -71,3 +71,28 @@ allowsDocumentAssembly
 allowsDocumentChanges
 allowsFormFieldEntry
 ```
+
+## Examples
+
+```
+$path:=Get 4D folder(Current resources folder)+"sample.pdf"
+
+ARRAY LONGINT($keys;0)
+ARRAY TEXT($values;0)
+
+PDF GET DOCUMENT ATTRIBUTES ($path;$keys;$values)
+
+$o:=JSON Parse($values{0})
+
+CLEAR VARIABLE($keys)
+CLEAR VARIABLE($values)
+
+APPEND TO ARRAY($keys;PDF_AUTHOR)
+APPEND TO ARRAY($values;"miyako")
+
+PDF SET DOCUMENT ATTRIBUTES ($path;$keys;$values)
+
+PDF GET DOCUMENT ATTRIBUTES ($path;$keys;$values)
+
+$o:=JSON Parse($values{0})
+```
