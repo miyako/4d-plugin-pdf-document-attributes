@@ -1,0 +1,1 @@
+﻿{"name":"PDF Document","id":20000,"commands":[{"theme":"PDF Document","syntax":"PDF GET DOCUMENT ATTRIBUTES(&T;&Y;&Y)"},{"theme":"PDF Document","syntax":"PDF SET DOCUMENT ATTRIBUTES(&T;&Y;&Y)"}]}
