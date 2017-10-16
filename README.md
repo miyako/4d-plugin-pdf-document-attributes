@@ -15,6 +15,10 @@ A small subset of [PDFKit](https://developer.apple.com/documentation/pdfkit?lang
 
 This plugin shared the same command name and constants as [pdf-kit](https://github.com/miyako/4d-plugin-pdf-kit), but the signature and data types are incompatible; therefore you can not use both together. First, comment out the old code, replace the plugin, then uncomment the code to complete the transition.
 
+### Build Instructions
+
+To avoid PDFKit framework crash on macOS High Sierra (10.13), it is necessary to compile on 10.13. The deployment target can be lower.
+
 ---
 
 ## Syntax
