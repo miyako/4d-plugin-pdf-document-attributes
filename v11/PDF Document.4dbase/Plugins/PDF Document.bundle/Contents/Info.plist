@@ -8,8 +8,6 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>PDF Document</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.4D.4DPlugin.PDFDocument</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
