@@ -13,7 +13,7 @@ A small subset of [PDFKit](https://developer.apple.com/documentation/pdfkit?lang
 
 ### Compatibility Note
 
-This plugin shares the same command and constant names as [pdf-kit](https://github.com/miyako/4d-plugin-pdf-kit), but the signature and data types are incompatible; therefore you can not use both together. First, comment out the old code, replace the plugin, then uncomment the code to complete the transition.
+This plugin shared the same command name and constants as [pdf-kit](https://github.com/miyako/4d-plugin-pdf-kit), but the signature and data types are incompatible; therefore you can not use both together. First, comment out the old code, replace the plugin, then uncomment the code to complete the transition.
 
 ### Build Instructions
 

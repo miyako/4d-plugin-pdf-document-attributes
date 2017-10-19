@@ -264,54 +264,58 @@ void PDF_GET_DOCUMENT_ATTRIBUTES(sLONG_PTR *pResult, PackagePtr pParams)
 	
 	if(url)
 	{
-		PDFDocument *pdf = [[PDFDocument alloc]initWithURL:url];
-		
-		if(pdf)
-		{
-			PA_ResizeArray(&param2, (PA_long32)16);
-			PA_ResizeArray(&param3, (PA_long32)16);
-			
-			NSInteger majorVersion = pdf.majorVersion;//PDF_MAJOR_VERSION
-			NSInteger minorVersion = pdf.minorVersion;//PDF_MINOR_VERSION
-			BOOL isEncrypted = pdf.isEncrypted;//PDF_IS_ENCRYPTED
-			BOOL isLocked = pdf.isLocked;//PDF_IS_LOCKED
-			BOOL allowsCopying = pdf.allowsCopying;//PDF_ALLOWS_COPYING
-			BOOL allowsPrinting = pdf.allowsPrinting;//PDF_ALLOWS_PRINTING
-			NSUInteger pageCount = pdf.pageCount;//PDF_PAGE_COUNT
-			PDFDocumentPermissions permissionsStatus = pdf.permissionsStatus;//PDF_PERMISSIONS
-			NSDictionary *attributes = pdf.documentAttributes;
-			NSString *title = [attributes objectForKey:PDFDocumentTitleAttribute];//PDF_TITLE
-			NSString *author = [attributes objectForKey:PDFDocumentAuthorAttribute];//PDF_AUTHOR
-			NSString *subject = [attributes objectForKey:PDFDocumentSubjectAttribute];//PDF_SUBJECT
-			NSString *creator = [attributes objectForKey:PDFDocumentCreatorAttribute];//PDF_CREATOR
-			NSString *producer = [attributes objectForKey:PDFDocumentProducerAttribute];//PDF_PRODUCER
-			NSArray *keywords = [attributes objectForKey:PDFDocumentKeywordsAttribute];//PDF_KEYWORDS
-			NSDate *creationDate = [attributes objectForKey:PDFDocumentCreationDateAttribute];//PDF_CREATION_DATE
-			NSDate *modificationDate = [attributes objectForKey:PDFDocumentModificationDateAttribute];//PDF_MODIFICATION_DATE
+        @autoreleasepool
+        {
+            PDFDocument *pdf = [[PDFDocument alloc]initWithURL:url];
+            
+            if(pdf)
+            {
+                PA_ResizeArray(&param2, (PA_long32)16);
+                PA_ResizeArray(&param3, (PA_long32)16);
+                
+                NSInteger majorVersion = pdf.majorVersion;//PDF_MAJOR_VERSION
+                NSInteger minorVersion = pdf.minorVersion;//PDF_MINOR_VERSION
+                BOOL isEncrypted = pdf.isEncrypted;//PDF_IS_ENCRYPTED
+                BOOL isLocked = pdf.isLocked;//PDF_IS_LOCKED
+                BOOL allowsCopying = pdf.allowsCopying;//PDF_ALLOWS_COPYING
+                BOOL allowsPrinting = pdf.allowsPrinting;//PDF_ALLOWS_PRINTING
+                NSUInteger pageCount = pdf.pageCount;//PDF_PAGE_COUNT
+                PDFDocumentPermissions permissionsStatus = pdf.permissionsStatus;//PDF_PERMISSIONS
+                NSDictionary *attributes = pdf.documentAttributes;
+                NSString *title = [attributes objectForKey:PDFDocumentTitleAttribute];//PDF_TITLE
+                NSString *author = [attributes objectForKey:PDFDocumentAuthorAttribute];//PDF_AUTHOR
+                NSString *subject = [attributes objectForKey:PDFDocumentSubjectAttribute];//PDF_SUBJECT
+                NSString *creator = [attributes objectForKey:PDFDocumentCreatorAttribute];//PDF_CREATOR
+                NSString *producer = [attributes objectForKey:PDFDocumentProducerAttribute];//PDF_PRODUCER
+                NSArray *keywords = [attributes objectForKey:PDFDocumentKeywordsAttribute];//PDF_KEYWORDS
+                NSDate *creationDate = [attributes objectForKey:PDFDocumentCreationDateAttribute];//PDF_CREATION_DATE
+                NSDate *modificationDate = [attributes objectForKey:PDFDocumentModificationDateAttribute];//PDF_MODIFICATION_DATE
+                
+                array_param_set_int(param2, param3, PDF_MAJOR_VERSION, json, L"majorVersion", majorVersion);
+                array_param_set_int(param2, param3, PDF_MINOR_VERSION, json, L"minorVersion", minorVersion);
+                array_param_set_int(param2, param3, PDF_PAGE_COUNT, json, L"pageCount", pageCount);
+                array_param_set_int(param2, param3, PDF_PERMISSIONS, json, L"permissionsStatus", permissionsStatus);
+                
+                array_param_set_bool(param2, param3, PDF_IS_ENCRYPTED, json, L"isEncrypted", isEncrypted);
+                array_param_set_bool(param2, param3, PDF_IS_LOCKED, json, L"isLocked", isLocked);
+                array_param_set_bool(param2, param3, PDF_ALLOWS_COPYING, json, L"allowsCopying", allowsCopying);
+                array_param_set_bool(param2, param3, PDF_ALLOWS_PRINTING, json, L"allowsPrinting", allowsPrinting);
+                
+                array_param_set_string(param2, param3, PDF_CREATION_DATE, json, L"creationDate", creationDate);
+                array_param_set_string(param2, param3, PDF_MODIFICATION_DATE, json, L"modificationDate", modificationDate);
+                array_param_set_string(param2, param3, PDF_TITLE, json, L"title", title);
+                array_param_set_string(param2, param3, PDF_AUTHOR, json, L"author", author);
+                array_param_set_string(param2, param3, PDF_SUBJECT, json, L"subject", subject);
+                array_param_set_string(param2, param3, PDF_CREATOR, json, L"creator", creator);
+                array_param_set_string(param2, param3, PDF_PRODUCER, json, L"producer", producer);
+                
+                array_param_set_array(param2, param3, PDF_KEYWORDS, json, L"keywords", keywords);
+                
+                [pdf release];
+            }
 
-			array_param_set_int(param2, param3, PDF_MAJOR_VERSION, json, L"majorVersion", majorVersion);
-			array_param_set_int(param2, param3, PDF_MINOR_VERSION, json, L"minorVersion", minorVersion);
-			array_param_set_int(param2, param3, PDF_PAGE_COUNT, json, L"pageCount", pageCount);
-			array_param_set_int(param2, param3, PDF_PERMISSIONS, json, L"permissionsStatus", permissionsStatus);
-			
-			array_param_set_bool(param2, param3, PDF_IS_ENCRYPTED, json, L"isEncrypted", isEncrypted);
-			array_param_set_bool(param2, param3, PDF_IS_LOCKED, json, L"isLocked", isLocked);
-			array_param_set_bool(param2, param3, PDF_ALLOWS_COPYING, json, L"allowsCopying", allowsCopying);
-			array_param_set_bool(param2, param3, PDF_ALLOWS_PRINTING, json, L"allowsPrinting", allowsPrinting);
-
-			array_param_set_string(param2, param3, PDF_CREATION_DATE, json, L"creationDate", creationDate);
-			array_param_set_string(param2, param3, PDF_MODIFICATION_DATE, json, L"modificationDate", modificationDate);
-			array_param_set_string(param2, param3, PDF_TITLE, json, L"title", title);
-			array_param_set_string(param2, param3, PDF_AUTHOR, json, L"author", author);
-			array_param_set_string(param2, param3, PDF_SUBJECT, json, L"subject", subject);
-			array_param_set_string(param2, param3, PDF_CREATOR, json, L"creator", creator);
-			array_param_set_string(param2, param3, PDF_PRODUCER, json, L"producer", producer);
-			
-			array_param_set_array(param2, param3, PDF_KEYWORDS, json, L"keywords", keywords);
-			
-			[pdf release];
-		}
-		
+        }
+        
 		[url release];
 	}
 	
@@ -393,72 +397,75 @@ void PDF_SET_DOCUMENT_ATTRIBUTES(sLONG_PTR *pResult, PackagePtr pParams)
 	
 	if(url)
 	{
-		PDFDocument *pdf = [[PDFDocument alloc]initWithURL:url];
-		
-		if(pdf)
-		{
-			NSMutableDictionary *attributes = [[NSMutableDictionary alloc]initWithDictionary:pdf.documentAttributes];
-			
-			PA_VariableKind param2_kind = PA_GetVariableKind(param2);
-			PA_VariableKind param3_kind = PA_GetVariableKind(param3);
-			
-			if((param2_kind == eVK_ArrayLongint) && (param3_kind == eVK_ArrayUnicode))
-			{
-				PA_long32 param2_count = PA_GetArrayNbElements(param2);
-				PA_long32 param3_count = PA_GetArrayNbElements(param3);
-				if(param2_count == param3_count)
-				{
-					for(unsigned int i = 1; i <= param2_count; ++i)
-					{
-						PA_long32 key = PA_GetLongintInArray(param2, i);
-						switch (key)
-						{
-							case PDF_TITLE:
-								array_param_set_dictionary_key(attributes, PDFDocumentTitleAttribute, param3, i);
-								break;
-							case PDF_AUTHOR:
-								array_param_set_dictionary_key(attributes, PDFDocumentAuthorAttribute, param3, i);
-								break;
-							case PDF_SUBJECT:
-								array_param_set_dictionary_key(attributes, PDFDocumentSubjectAttribute, param3, i);
-								break;
-							case PDF_CREATOR:
-								array_param_set_dictionary_key(attributes, PDFDocumentCreatorAttribute, param3, i);
-								break;
-							case PDF_PRODUCER:
-								array_param_set_dictionary_key(attributes, PDFDocumentProducerAttribute, param3, i);
-								break;
-							case PDF_KEYWORDS:
-								array_param_set_dictionary_key_array(attributes, PDFDocumentKeywordsAttribute, param3, i);
-								break;
-							case PDF_CREATION_DATE:
-								array_param_set_dictionary_key_date(attributes, PDFDocumentCreationDateAttribute, param3, i);
-								break;
-							case PDF_MODIFICATION_DATE:
-								array_param_set_dictionary_key_date(attributes, PDFDocumentModificationDateAttribute, param3, i);
-								break;
-							case PDF_PAGE_COUNT:
-							case PDF_MAJOR_VERSION:
-							case PDF_MINOR_VERSION:
-							case PDF_ALLOWS_PRINTING:
-							case PDF_ALLOWS_COPYING:
-							case PDF_IS_LOCKED:
-							case PDF_IS_ENCRYPTED:
-							case PDF_PERMISSIONS:
-								break;
-						}	
-					}
-				}
-			}
-			
-			[pdf setDocumentAttributes:attributes];
-			[pdf writeToURL:url];
-			[pdf release];
-			
-			[attributes release];
-		}
-	
-		[url release];
+        @autoreleasepool
+        {
+            PDFDocument *pdf = [[PDFDocument alloc]initWithURL:url];
+            
+            if(pdf)
+            {
+                NSMutableDictionary *attributes = [[NSMutableDictionary alloc]initWithDictionary:pdf.documentAttributes];
+                
+                PA_VariableKind param2_kind = PA_GetVariableKind(param2);
+                PA_VariableKind param3_kind = PA_GetVariableKind(param3);
+                
+                if((param2_kind == eVK_ArrayLongint) && (param3_kind == eVK_ArrayUnicode))
+                {
+                    PA_long32 param2_count = PA_GetArrayNbElements(param2);
+                    PA_long32 param3_count = PA_GetArrayNbElements(param3);
+                    if(param2_count == param3_count)
+                    {
+                        for(unsigned int i = 1; i <= param2_count; ++i)
+                        {
+                            PA_long32 key = PA_GetLongintInArray(param2, i);
+                            switch (key)
+                            {
+                                case PDF_TITLE:
+                                    array_param_set_dictionary_key(attributes, PDFDocumentTitleAttribute, param3, i);
+                                    break;
+                                case PDF_AUTHOR:
+                                    array_param_set_dictionary_key(attributes, PDFDocumentAuthorAttribute, param3, i);
+                                    break;
+                                case PDF_SUBJECT:
+                                    array_param_set_dictionary_key(attributes, PDFDocumentSubjectAttribute, param3, i);
+                                    break;
+                                case PDF_CREATOR:
+                                    array_param_set_dictionary_key(attributes, PDFDocumentCreatorAttribute, param3, i);
+                                    break;
+                                case PDF_PRODUCER:
+                                    array_param_set_dictionary_key(attributes, PDFDocumentProducerAttribute, param3, i);
+                                    break;
+                                case PDF_KEYWORDS:
+                                    array_param_set_dictionary_key_array(attributes, PDFDocumentKeywordsAttribute, param3, i);
+                                    break;
+                                case PDF_CREATION_DATE:
+                                    array_param_set_dictionary_key_date(attributes, PDFDocumentCreationDateAttribute, param3, i);
+                                    break;
+                                case PDF_MODIFICATION_DATE:
+                                    array_param_set_dictionary_key_date(attributes, PDFDocumentModificationDateAttribute, param3, i);
+                                    break;
+                                case PDF_PAGE_COUNT:
+                                case PDF_MAJOR_VERSION:
+                                case PDF_MINOR_VERSION:
+                                case PDF_ALLOWS_PRINTING:
+                                case PDF_ALLOWS_COPYING:
+                                case PDF_IS_LOCKED:
+                                case PDF_IS_ENCRYPTED:
+                                case PDF_PERMISSIONS:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                
+                [pdf setDocumentAttributes:attributes];
+                [pdf writeToURL:url];
+                [pdf release];
+                
+                [attributes release];
+            }
+        }
+
+        [url release];
 	}
 
 }
